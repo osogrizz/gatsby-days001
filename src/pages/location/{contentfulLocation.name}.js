@@ -6,8 +6,15 @@ import Layout from '../../components/layout'
 const Location = ({ data }) => {
   return (
     <Layout>
-      <div>
-        Welcome to {data.contentfulLocation.name}
+      <div key={data.contentfulLocation.id}>
+        <h1>Welcome to {data.contentfulLocation.name}</h1>
+        <h3>{data.contentfulLocation.locationCaption}</h3>
+
+        <div>
+          <pre>Lat. {data.contentfulLocation.location.lat}</pre>
+          <pre>Lon. {data.contentfulLocation.location.lon}</pre>
+        </div>
+
       </div>
     </Layout>
   )
