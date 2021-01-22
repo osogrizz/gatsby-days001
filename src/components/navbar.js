@@ -2,32 +2,28 @@ import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-const Navbar = () => {
+import CityList from '../components/city-list'
 
+const Navbar = () => {
   const [location, setLocation] = useState(false)
 
-
-
   return (
-    <div>
-      <ul>
-        <Link to="/" >Home</Link>
-        {' '}
-        <Link to="/about" >About</Link>
-        <div onMouseEnter={() => setLocation(true)} onMouseLeave={() => setLocation(false)} role="dropdown" >
-          <div>Location</div>
-          {location && (
-            <ul >
-              <Link to="/location/san-francisco" >San Francisco</Link>
-              {' '}
-              <Link to="/location/solvang" >Solvang</Link>
-              {' '}
-              <Link to="/location/santa-barbara" >Santa Barbara</Link>
-            </ul>
-          )}
-        </div>
-      </ul>
-    </div>
+        <Container>
+          <ul>
+            <Link to="/" >Home</Link>
+
+            <Link to="/about" >About</Link>
+
+            <div onMouseEnter={() => setLocation(true)} onMouseLeave={() => setLocation(false)} role="dropdown" >
+              <div>Location</div>
+              {location && (
+                <ul className="city-list">
+                  <CityList />
+                </ul>
+            )}
+            </div>
+          </ul>
+        </Container >
   )
 }
 
@@ -35,8 +31,17 @@ export default Navbar
 
 
 const Container = styled.div`
-ul {
-  display: flex;
+  ul {
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
 
-}
+  }
+
+  .city-list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+  }
 `
+
